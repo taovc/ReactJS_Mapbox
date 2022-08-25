@@ -43,7 +43,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             required={true}
           />
         </div>
-        
+
         <div className="item">
           <label className="label">Latitude</label>
           <input
@@ -66,7 +66,6 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
           />
         </div>
 
-
         <div className="item">
           <label className="label">Description</label>
           <textarea
@@ -75,6 +74,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
+
         <div className="item">
           <label className="label">
             Type (Entreprise, Particulier, Collectivité)
