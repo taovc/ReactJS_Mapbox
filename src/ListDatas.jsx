@@ -11,6 +11,7 @@ const AddButton = ({ setOpen }) => {
 
 const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
   const [userInfo, setUserInfo] = useState({});
+
   const users = [
     {
       id: 1,
@@ -112,34 +113,6 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
           </div>
         );
       })}
-    </div>
-  );
-};
-
-const ListUsers1 = () => {
-  const [users, setUsers] = useState([
-    { id: 1, Name: "Jay", Description: "Bilzerian", Type: "entreprise" },
-    { id: 2, Name: "Jay2", Description: "Bilzerian2", Type: "entreprise2" },
-  ]);
-
-  return (
-    <div className="containerUser">
-      <h3 className="p-3 text-center">Display a list of users</h3>
-      <table className="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users.map((user) => (
-              <tr key={user.id}>
-                <th>{user.Name}</th>
-              </tr>
-            ))}
-        </tbody>
-      </table>
     </div>
   );
 };
