@@ -8,7 +8,7 @@
   cursor: pointer;
   width: 200px;
   position: absolute;
-  right: 250px;
+  right: 450px;
   bottom: 250px;
 }
 
@@ -108,4 +108,19 @@
   cursor: pointer;
   padding: 5px 0;
   align-self: center;
+}
+
+.containerUser {
+  padding: 10px;
+  overflow: scroll;
+  background-color: rgb(12, 171, 180);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  width: 600px;
+  position: absolute;
+  right: 250px;
+  bottom: 500px;
 }
