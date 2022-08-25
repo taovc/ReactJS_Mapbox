@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "./AddForm.css";
 import axios from "axios";
 
-const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
+const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescription = "", DefaultType = "Entreprise" }) => {
   const types = ["Entreprise", "Particulier", "Collectivité"];
-  const [name, setName] = useState(null);
-  const [description, setDesc] = useState("");
-  const [type, setType] = useState(types[0]);
+  console.log("DefaultName = ", DefaultName)
+  const [name, setName] = useState(DefaultName);
+  const [description, setDesc] = useState(DefaultDescription);
+  const [type, setType] = useState(DefaultType);
 
   const handleCreate = async () => {
     try {
@@ -41,6 +41,8 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             className="input"
             onChange={(e) => setName(e.target.value)}
             required={true}
+            value={name}
+            disabled={DefaultName}
           />
         </div>
 
@@ -52,6 +54,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             onChange={(e) => setLat(e.target.value)}
             required={true}
             value={lat}
+            disabled={DefaultName}
           />
         </div>
 
@@ -63,6 +66,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             onChange={(e) => setLng(e.target.value)}
             required={true}
             value={lng}
+            disabled={DefaultName}
           />
         </div>
 
@@ -72,6 +76,8 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
             rows={4}
             type="text"
             onChange={(e) => setDesc(e.target.value)}
+            value={description}
+            disabled={DefaultName}
           />
         </div>
 
@@ -79,7 +85,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng }) => {
           <label className="label">
             Type (Entreprise, Particulier, Collectivité)
           </label>
-          <select name="type" onChange={(e) => setType(e.target.value)}>
+          <select name="type" disabled={DefaultName} onChange={(e) => setType(e.target.value)}>
             {types.map((type, i) => (
               <option key={i} value={types[i]}>
                 {type}
