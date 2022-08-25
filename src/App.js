@@ -49,8 +49,13 @@ export default function App() {
           setLng={setLng}
         />
       )}
-      <UserAction.ListUsers showInfo={showInfo} setShowInfo={setShowInfo} setLat={setLat} setLng={setLng} />
-     
+      <UserAction.ListUsers
+        showInfo={showInfo}
+        setShowInfo={setShowInfo}
+        setLat={setLat}
+        setLng={setLng}
+      />
+
       <div ref={mapContainer} className="map-container" />
     </div>
   );
