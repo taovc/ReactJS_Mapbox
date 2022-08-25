@@ -30,7 +30,7 @@ export default function App() {
       setZoom(map.current.getZoom().toFixed(2));
     });
 
-    map.current.on("click", (e) => {
+    map.current.on("click", (e) => { // if click , open the window
       setLng(e.lngLat.lng);
       setLat(e.lngLat.lat);
       setOpen(true);
@@ -40,7 +40,7 @@ export default function App() {
   return (
     <div>
       <UserAction.ListDatas setOpen={setOpen} />
-      {open && (
+      {open && ( // if windows is open, then add user infomation
         <AddForm
           setOpen={setOpen}
           lat={lat}
@@ -49,7 +49,7 @@ export default function App() {
           setLng={setLng}
         />
       )}
-      <UserAction.ListUsers
+      <UserAction.ListUsers // show all user's info
         showInfo={showInfo}
         setShowInfo={setShowInfo}
         setLat={setLat}

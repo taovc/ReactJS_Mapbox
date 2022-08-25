@@ -18,9 +18,13 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
         lng
       };
       const res = await axios.post(
-        "http://localhost:3000/api/datas",
+        "http://localhost:4000/api/datas",
         newProduct
-      );
+      ).then(function (reponse) {
+        console.log(reponse)
+      }).catch(function (err) {
+        console.log(err)
+      });
       setOpen(true);
     } catch (err) {
       console.log(err);
