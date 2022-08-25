@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import ListDatas from "./ListDatas.jsx";
+import UserAction from "./ListDatas.jsx";
 import AddForm from "./AddForm.jsx";
 import "./AddForm.css";
 
@@ -14,6 +14,7 @@ export default function App() {
   const [lat, setLat] = useState(48.9);
   const [zoom, setZoom] = useState(12);
   const [open, setOpen] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -38,7 +39,7 @@ export default function App() {
 
   return (
     <div>
-      <ListDatas setOpen={setOpen} />
+      <UserAction.ListDatas setOpen={setOpen} />
       {open && (
         <AddForm
           setOpen={setOpen}
@@ -48,6 +49,8 @@ export default function App() {
           setLng={setLng}
         />
       )}
+      <UserAction.ListUsers showInfo={showInfo} setShowInfo={setShowInfo} setLat={setLat} setLng={setLng} />
+     
       <div ref={mapContainer} className="map-container" />
     </div>
   );
