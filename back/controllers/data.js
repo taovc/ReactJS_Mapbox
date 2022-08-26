@@ -15,7 +15,7 @@ exports.createThing = (req, res, next) => {
   //  .then(() => {
       Thing.find()
         .then((things) => {
-          res.status(200).json(things);
+          res.status(201).json(things);
         })
         .catch((error) => {
           res.status(400).json({ error: error });
@@ -24,4 +24,13 @@ exports.createThing = (req, res, next) => {
     //.catch((error) => {
     //  res.status(400).json({ error });
     //});
+};
+
+exports.getAllData = (req, res, next) => {
+  Thing.find()
+      .then((things) => {
+          res.status(200).json(things);
+      }).catch((error) => {
+          res.status(400).json({ error: error });
+      });
 };
