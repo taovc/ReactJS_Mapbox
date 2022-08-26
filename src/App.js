@@ -1,18 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import UserAction from "./ListDatas.jsx";
+import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import { ListUsers, CreateUser } from "./ListDatas.jsx";
 import AddForm from "./AddForm.jsx";
-// import {MapboxAPI} from "./AddMaker.js"
-import {
-  addMarkers,
-  buildLocationList,
-  flyToStore,
-  createPopUp,
-} from "./AddMaker.js";
-// import "./AddForm.css";
+
+mapboxgl.accessToken =
+  "pk.eyJ1IjoidGFvemVpIiwiYSI6ImNsNzd3M3M1YTAzd3YzcG5na3NyOXNkMWcifQ.pDSjn-lx6bms-cwHg-K5mw";
 
 export default function App() {
-  return <div></div>;
-  /*
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(2.349014);
@@ -44,8 +38,21 @@ export default function App() {
   });
 
   return (
-    <div>
-      <UserAction.CreateUser setOpen={setOpen} />
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <div ref={mapContainer} className="map-container" />
+      <div style={{ marginLeft: "290px", marginTop: "40px" }}>
+        <CreateUser setOpen={setOpen} />
+        <ListUsers // show all user's info
+          showInfo={showInfo}
+          setShowInfo={setShowInfo}
+          setLat={setLat}
+          setLng={setLng}
+        />
+      </div>
       {open && ( // if windows is open, then add user infomation
         <AddForm
           setOpen={setOpen}
@@ -55,14 +62,6 @@ export default function App() {
           setLng={setLng}
         />
       )}
-      <UserAction.ListUsers // show all user's info
-        showInfo={showInfo}
-        setShowInfo={setShowInfo}
-        setLat={setLat}
-        setLng={setLng}
-      />
-      <div ref={mapContainer} className="map-container" />
     </div>
   );
-  */
 }

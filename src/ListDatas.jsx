@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AddForm from "./AddForm.jsx";
 import axios from "axios";
+import "./ListUser.css";
+import "./AddForm.css";
 
 const AddButton = ({ setOpen }) => {
   return (
@@ -39,62 +41,57 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
     }
     window.location.reload();
   };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        height: "100vh",
-        margin: "40px",
-      }}
-    >
-      {allUsers.map((user, index) => {
-        return (
-          <div key={index}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                width: "200px",
-                margin: "20px",
-                backgroundColor: "lightblue",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                handleClick(user);
-              }}
-              key={`user_${index}`}
-            >
-              <div key={`username_${index}`}>{user.name}</div>
-              {showInfo && (
-                <AddForm
-                  setOpen={setShowInfo}
-                  lat={userInfo.lat}
-                  lng={userInfo.lng}
-                  setLat={setLat}
-                  setLng={setLng}
-                  DefaultName={userInfo.name}
-                  DefaultDescription={userInfo.description}
-                  DefaultType={userInfo.type}
-                  key={`form_${index}`}
-                />
-              )}
-            </div>
-            <button
-              key={`deletebtn_${index}`}
-              className="delButton"
-              onClick={() => handleDelete(user._id)}
-            >
-              Supprimer
-            </button>
-          </div>
-        );
-      })}
+    <div class="listing">
+      <table class="table-style">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allUsers.map((user, index) => {
+            return (
+              <tr key={index}>
+                <td
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleClick(user);
+                  }}
+                  key={`user_${index}`}
+                >
+                  <div key={`username_${index}`}>{user.name}</div>
+                  {showInfo && (
+                    <AddForm
+                      setOpen={setShowInfo}
+                      lat={userInfo.lat}
+                      lng={userInfo.lng}
+                      setLat={setLat}
+                      setLng={setLng}
+                      DefaultName={userInfo.name}
+                      DefaultDescription={userInfo.description}
+                      DefaultType={userInfo.type}
+                      key={`form_${index}`}
+                    />
+                  )}
+                </td>
+                <td>
+                  <button
+                    key={`deletebtn_${index}`}
+                    className="delButton"
+                    onClick={() => handleDelete(user._id)}
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };
@@ -103,9 +100,4 @@ const CreateUser = ({ setOpen }) => {
   return <AddButton setOpen={setOpen} />;
 };
 
-const UserAction = {
-  ListUsers,
-  CreateUser,
-};
-
-export default UserAction;
+export { ListUsers, CreateUser };
