@@ -30,7 +30,8 @@ export default function App() {
       setZoom(map.current.getZoom().toFixed(2));
     });
 
-    map.current.on("click", (e) => { // if click , open the window
+    map.current.on("click", (e) => {
+      // if click , open the window
       setLng(e.lngLat.lng);
       setLat(e.lngLat.lat);
       setOpen(true);
@@ -55,7 +56,6 @@ export default function App() {
         setLat={setLat}
         setLng={setLng}
       />
-
       <div ref={mapContainer} className="map-container" />
     </div>
   );
