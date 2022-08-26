@@ -110,6 +110,18 @@
   align-self: center;
 }
 
+.delButton {
+  width: 25%;
+  border: none;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 0;
+  align-self: center;
+}
+
+
 .containerUser {
   padding: 10px;
   overflow: scroll;

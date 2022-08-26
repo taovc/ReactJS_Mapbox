@@ -37,7 +37,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
         <span onClick={() => setOpen(false)} className="close">
           X
         </span>
-        <h1>Ajouter</h1>
+        <h1>Ajouter / Détails</h1>
         <div className="item">
           <label className="label">Nom</label>
           <input
@@ -91,13 +91,12 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
           </label>
           <select name="type" disabled={DefaultName} onChange={(e) => setType(e.target.value)}>
             {types.map((type, i) => (
-              <option key={i} value={types[i]}>
+              <option key={`type_${i}`} value={types[i]}>
                 {type}
               </option>
             ))}
           </select>
         </div>
-
         <button className="addButton" onClick={handleCreate}>
           Créer
         </button>
