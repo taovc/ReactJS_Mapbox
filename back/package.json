@@ -9,6 +9,7 @@
   "author": "tao",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "mongoose": "^6.5.3"
   }
 }
