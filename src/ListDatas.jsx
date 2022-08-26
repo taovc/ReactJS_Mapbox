@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddForm from "./AddForm.jsx";
 import axios from "axios";
 
@@ -12,50 +12,22 @@ const AddButton = ({ setOpen }) => {
 
 const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
   const [userInfo, setUserInfo] = useState({});
-  const [AllUsers, setAllUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
 
-  if (AllUsers == null) {
-    console.log('yes')
-    try {
-      axios.get(
-        "http://localhost:4000/api",
-      ).then(function (reponse) {
-        setAllUsers(reponse.data)
-        console.log(reponse.data)
-      }).catch(function (err) {
-        console.log(err)
-      });
-    } catch (err) {
-      console.log(err);
-    }
-    console.log('hh', AllUsers)
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:4000/api"
+        );
+        setAllUsers(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
 
-  const users = [
-    {
-      name: "Jay",
-      description: "Bilzerian",
-      type: "entreprise",
-      lng: 0,
-      lat: 1,
-    },
-    {
-      id: 2,
-      name: "Jay2",
-      description: "Bilzerian2",
-      type: "entreprise2",
-      lng: 0,
-      lat: 1,
-    },
-    {
-      id: 3,
-      name: "Jay3",
-      description: "Bilzerian3",
-      type: "entreprise3",
-      lng: 0,
-      lat: 1,
-    }
-  ];
   const handleClick = (user) => {
     setShowInfo(!showInfo);
     setUserInfo(user);
@@ -72,7 +44,7 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
         margin: "40px",
       }}
     >
-      {AllUsers.map((user, index) => {
+      {allUsers.map((user, index) => {
         return (
           <div
             style={{

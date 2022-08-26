@@ -10,27 +10,22 @@ exports.createThing = (req, res, next) => {
   const thing = new Thing({
     ...thingObject,
   });
-  //thing
-  //  .save()
-  //  .then(() => {
-      Thing.find()
-        .then((things) => {
-          res.status(201).json(things);
-        })
-        .catch((error) => {
-          res.status(400).json({ error: error });
-        });
-    //})
-    //.catch((error) => {
-    //  res.status(400).json({ error });
-    //});
-};
+  thing
+    .save()
+    .then(() => {
+      res.status(201).json({ message: "obj create!" });
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
+}
 
 exports.getAllData = (req, res, next) => {
   Thing.find()
-      .then((things) => {
-          res.status(200).json(things);
-      }).catch((error) => {
-          res.status(400).json({ error: error });
-      });
+    .then((things) => {
+      res.status(200).json(things);
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error });
+    });
 };

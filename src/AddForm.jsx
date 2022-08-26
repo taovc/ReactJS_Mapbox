@@ -28,6 +28,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
     } catch (err) {
       console.log(err);
     }
+    window.location.reload();
   };
 
   return (
