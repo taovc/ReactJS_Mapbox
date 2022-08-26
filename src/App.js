@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import UserAction from "./ListDatas.jsx";
 import AddForm from "./AddForm.jsx";
-import "./AddForm.css";
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoidGFvemVpIiwiYSI6ImNsNzd3M3M1YTAzd3YzcG5na3NyOXNkMWcifQ.pDSjn-lx6bms-cwHg-K5mw";
+import {addMarkers, buildLocationList, flyToStore, createPopUp} from "./AddMaker.js"
+// import "./AddForm.css";
 
 export default function App() {
+  return <div></div>;
+  /*
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(2.349014);
@@ -59,4 +58,5 @@ export default function App() {
       <div ref={mapContainer} className="map-container" />
     </div>
   );
+  */
 }
