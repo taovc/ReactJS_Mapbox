@@ -1,7 +1,3 @@
-//module.exports = (req, res, next) => {
-//  console.log(req.body.name);
-//  res.status(200).json({ message: "yes" });
-//};
 const Thing = require("../models/userdata").UserData;
 
 exports.createThing = (req, res, next) => {
@@ -18,7 +14,7 @@ exports.createThing = (req, res, next) => {
     .catch((error) => {
       res.status(400).json({ error });
     });
-}
+};
 
 exports.getAllData = (req, res, next) => {
   Thing.find()
@@ -27,5 +23,19 @@ exports.getAllData = (req, res, next) => {
     })
     .catch((error) => {
       res.status(400).json({ error: error });
+    });
+};
+
+exports.deleteData = (req, res, next) => {
+  Thing.findOne({ _id: req.params.id })
+    .then(() => {
+      Thing.deleteOne({ _id: req.params.id })
+        .then(() => {
+          res.status(200).json({ message: "Objet supprimé !" });
+        })
+        .catch((error) => res.status(401).json({ error }));
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
     });
 };
