@@ -3,7 +3,6 @@ import axios from "axios";
 
 const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescription = "", DefaultType = "Entreprise" }) => {
   const types = ["Entreprise", "Particulier", "Collectivité"];
-  console.log("DefaultName = ", DefaultName)
   const [name, setName] = useState(DefaultName);
   const [description, setDesc] = useState(DefaultDescription);
   const [type, setType] = useState(DefaultType);
@@ -17,7 +16,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
         lat,
         lng
       };
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:4000/api/datas",
         newProduct
       ).then(function (reponse) {
@@ -97,7 +96,7 @@ const AddForm = ({ setOpen, lat, lng, setLat, setLng, DefaultName, DefaultDescri
             ))}
           </select>
         </div>
-        
+
         <button className="addButton" onClick={handleCreate}>
           Créer
         </button>
