@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddForm from "./AddForm.jsx";
+import axios from "axios";
 
 const AddButton = ({ setOpen }) => {
   return (
@@ -11,10 +12,27 @@ const AddButton = ({ setOpen }) => {
 
 const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
   const [userInfo, setUserInfo] = useState({});
+  const [AllUsers, setAllUsers] = useState(null);
+
+  if (AllUsers == null) {
+    console.log('yes')
+    try {
+      axios.get(
+        "http://localhost:4000/api",
+      ).then(function (reponse) {
+        setAllUsers(reponse.data)
+        console.log(reponse.data)
+      }).catch(function (err) {
+        console.log(err)
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    console.log('hh', AllUsers)
+  }
 
   const users = [
     {
-      id: 1,
       name: "Jay",
       description: "Bilzerian",
       type: "entreprise",
@@ -36,33 +54,8 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
       type: "entreprise3",
       lng: 0,
       lat: 1,
-    },
-    {
-      id: 4,
-      name: "Jay4",
-      description: "Bilzerian4",
-      type: "entreprise4",
-      lng: 0,
-      lat: 1,
-    },
-    {
-      id: 5,
-      name: "Jay5",
-      description: "Bilzerian5",
-      type: "entreprise5",
-      lng: 0,
-      lat: 1,
-    },
-    {
-      id: 6,
-      name: "Jay6",
-      description: "Bilzerian6",
-      type: "entreprise6",
-      lng: 0,
-      lat: 1,
-    },
+    }
   ];
-
   const handleClick = (user) => {
     setShowInfo(!showInfo);
     setUserInfo(user);
@@ -79,7 +72,7 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
         margin: "40px",
       }}
     >
-      {users.map((user, index) => {
+      {AllUsers.map((user, index) => {
         return (
           <div
             style={{
@@ -117,13 +110,13 @@ const ListUsers = ({ setShowInfo, showInfo, setLat, setLng }) => {
   );
 };
 
-const ListDatas = ({ setOpen }) => {
+const CreateUser = ({ setOpen }) => {
   return <AddButton setOpen={setOpen} />;
 };
 
 const UserAction = {
   ListUsers,
-  ListDatas,
+  CreateUser,
 };
 
 export default UserAction;

@@ -39,7 +39,7 @@ export default function App() {
 
   return (
     <div>
-      <UserAction.ListDatas setOpen={setOpen} />
+      <UserAction.CreateUser setOpen={setOpen} />
       {open && ( // if windows is open, then add user infomation
         <AddForm
           setOpen={setOpen}
